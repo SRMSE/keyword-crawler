@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 imgur.com
 xvideos.com
 pornhub.com
@@ -160,3 +161,5 @@ pornhublive.com
 baiducdn.biz		not indexedsmarter.com		not indexedhnjy.com.cn		not indexeddbw.cn		not indexedshihuo.cn		not indexedc1datings.com		not indexed4cdn.org
 ptt01.cc		not indexedadreactor.com		not indexedforfreeupgrades.org		not indexedd1ev.com		not indexed80018.cn		not indexedjiemian.com		not indexedaicheren.com		not indexedel7l.co		not indexed3dwwwgame.com		not indexeddv37.com		not indexedwatchepisodes1.com		not indexedobozrevatel.com
 vidio.com		not indexedhatenablog.jp		not indexedcanalblog.com
+=======
+>>>>>>> 7d6b056e1c70a361c6756ed6a8e168ab898def64
