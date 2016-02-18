@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup as bs
 from pymongo import MongoClient
+from time
 client = MongoClient()
 db = client.test
 similarsites = db.similarsites
@@ -14,9 +15,9 @@ bcolors={
     "BOLD" : '\033[1m',
     "UNDERLINE" : '\033[4m'
 }
-from time import gmtime, strftime
+
 def put(msg,type):
-	print bcolors[type.upper()] + ""+"["+strftime("%Y-%m-%d %H:%M:%S", gmtime())+"]\t["+type.strip().capitalize()+"]\t"+str(msg)+"" + bcolors["ENDC"]
+	print bcolors[type.upper()] + ""+"["+time.asctime( time.localtime(time.time()) )+"]\t["+type.strip().capitalize()+"]\t"+str(msg)+"" + bcolors["ENDC"]
 
 url = "http://www.similarsites.com/browse"
 soup = bs(requests.get(url).content,"lxml")
