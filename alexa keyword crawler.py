@@ -49,5 +49,4 @@ def main(line):
 
 if __name__ == "__main__":
 	p = Pool(50)
-
 	main(p.map(main, file))

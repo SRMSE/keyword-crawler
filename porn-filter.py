@@ -1,8 +1,16 @@
 import requests
-import json
 from bs4 import BeautifulSoup as b
-import csv
 import time
+from pymongo import MongoClient
+from multiprocessing import Pool
+
+
+csvfile= open('top-1m.csv','r')
+client = MongoClient(connect=False)
+db = client.alexa
+keyword = db.keyword
+url="http://api.mywot.com/0.4/public_link_json2?hosts=%s/&callback=process&key=2cad1d03acb160bd3b2ed67b8b8a2e7b96781f45"
+
 bcolors={
 	"HEADER" : '\033[95m',
     "INFO" : '\033[94m',
@@ -13,16 +21,18 @@ bcolors={
     "BOLD" : '\033[1m',
     "UNDERLINE" : '\033[4m'
 }
+
 def put(msg,type):
 	print bcolors[type.upper()] + ""+"["+time.asctime( time.localtime(time.time()) )+"]\t["+type.strip().capitalize()+"]\t"+str(msg)+"" + bcolors["ENDC"]
-file = open("test.txt",'a')
-#stopped at line 26576
-i=0
-reader= open('top-1m.csv','rb')
 
-line=reader.readlines()
-while True:
-	domain = "http://api.mywot.com/0.4/public_link_json2?hosts=" + line[i].split(",")[1].strip() + "/&callback=process&key=2cad1d03acb160bd3b2ed67b8b8a2e7b96781f45"
+def soup(website):
+	soup = b(requests.get(website).content,"lxml").find("pre")
+	return soup
+
+def main(line):
+	try:
+		line = line.split(",")[1].strip()
+		json = soup(url%line)
 	#print domain
 	domain_soup = b(requests.get(domain).content,"lxml").find("body").text
 	
@@ -44,3 +54,8 @@ while True:
 		put("DOES NOT CONTAIN INFO", "FAIL")
 		print "------------------------------------------------------------------------------------"
 	i += 1
+
+
+if __name__=="__main__":
+	p = Pool(50)
+	main(p.map(main, file))
